@@ -561,7 +561,7 @@ public class StarterJpaConfig {
 
 			JpaCapabilityStatementProvider confProvider = new JpaCapabilityStatementProvider(
 					fhirServer, fhirSystemDao, jpaStorageSettings, searchParamRegistry, theValidationSupport);
-			confProvider.setImplementationDescription("HAPI FHIR R4 Server");
+			confProvider.setImplementationDescription("HAPI FHIR R4 伺服器");
 			return confProvider;
 		} else if (fhirVersion == FhirVersionEnum.R4B) {
 
