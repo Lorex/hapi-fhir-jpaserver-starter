@@ -19,9 +19,9 @@ spring:
     fail-on-missing-locations: false
   datasource:
     # 修改資料庫連線設定
-    url: 'jdbc:postgresql://192.168.0.0:5432/hapifhir_plain'
+    url: 'jdbc:postgresql://192.168.3.111:5432/hapifhir_twcore'
     username: fhir
-    password: null
+    password: hapifhirtw
     driverClassName: org.postgresql.Driver
     max-active: 15
 
@@ -88,16 +88,16 @@ hapi:
     ### will be served under /web/app
     #app_content_path: ./configs/app
     ### enable to set the Server URL
-    server_address: https://hapi.fhir.tw/fhir
+    server_address: https://twcore.hapi.fhir.tw/fhir
     #    defer_indexing_for_codesystems_of_size: 101
     #    install_transitive_ig_dependencies: true
-    #implementationguides:
+    implementationguides:
     ###    example from registry (packages.fhir.org)
-    #  swiss:
-    #    name: swiss.mednet.fhir
-    #    version: 0.8.0
-    #    reloadExisting: false
-    #    installMode: STORE_AND_INSTALL
+      twcore:
+        name: tw.gov.mohw.twcore
+        version: 0.2.2
+        reloadExisting: true
+        installMode: STORE_AND_INSTALL
     #      example not from registry
     #      ips_1_0_0:
     #        packageUrl: https://build.fhir.org/ig/HL7/fhir-ips/package.tgz
@@ -148,7 +148,7 @@ hapi:
     mdm_enabled: false
     mdm_rules_json_location: "mdm-rules.json"
     local_base_urls:
-      - https://hapi.fhir.tw/fhir
+      - https://twcore.hapi.fhir.tw/fhir
     logical_urls:
       - http://terminology.hl7.org/*
       - https://terminology.hl7.org/*
@@ -158,6 +158,8 @@ hapi:
       - https://unitsofmeasure.org/*
       - http://loinc.org/*
       - https://loinc.org/*
+      - http://twcore.mohw.gov.tw/ig/twcore/CodeSystem/*
+      - https://twcore.mohw.gov.tw/ig/twcore/CodeSystem/*
     #    partitioning:
     #      allow_references_across_partitions: false
     #      partitioning_include_in_search_hashes: false
@@ -204,13 +206,13 @@ hapi:
     reuse_cached_search_results_millis: -1
     tester:
       home:
-        name: 臺灣公開測試伺服器（一般）
-        server_address: 'https://hapi.fhir.tw/fhir'
+        name: 臺灣公開測試伺服器（TW Core 臺灣核心規範）
+        server_address: 'https://twcore.hapi.fhir.tw/fhir'
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
-      twcore:
-        name: 台灣公開測試伺服器（TW Core 臺灣核心規範）
-        server_address: 'https://twcore.hapi.fhir.tw/fhir'
+      plain:
+        name: 臺灣公開測試伺服器（一般）
+        server_address: 'https://hapi.fhir.tw/fhir'
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
       global:
@@ -218,8 +220,8 @@ hapi:
         server_address: "http://hapi.fhir.org/baseR4"
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
-    #    validation:
-    #      requests_enabled: true
+    validation:
+      requests_enabled: true
     #      responses_enabled: true
     #    binary_storage_enabled: true
     inline_resource_storage_below_size: 1048576

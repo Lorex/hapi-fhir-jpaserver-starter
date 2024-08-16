@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while true
+do
+	java -jar target/ROOT.war -Xmx10G
+done
