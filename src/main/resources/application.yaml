@@ -35,7 +35,8 @@ spring:
     fail-on-missing-locations: false
   datasource:
     # 修改資料庫連線設定
-    url: 'jdbc:postgresql://192.168.3.111:5432/hapifhir_twcore'
+    # url: 'jdbc:postgresql://192.168.3.111:5432/hapifhir_twcore'
+    url: 'jdbc:postgresql://127.0.0.1:5432/hapifhir'
     username: fhir
     password: hapifhirtw
     driverClassName: org.postgresql.Driver
@@ -145,14 +146,14 @@ hapi:
     ### will be served under /web/app
     #app_content_path: ./configs/app
     ### enable to set the Server URL
-    server_address: https://twcore.hapi.fhir.tw/fhir
+    server_address: https://hapifhir.802.org.tw/fhir
     #    defer_indexing_for_codesystems_of_size: 101
     #    install_transitive_ig_dependencies: true
     implementationguides:
     ###    example from registry (packages.fhir.org)
       twcore:
         name: tw.gov.mohw.twcore
-        version: 0.2.2
+        version: 0.3.2
         reloadExisting: true
         installMode: STORE_AND_INSTALL
     #      example not from registry
@@ -202,11 +203,11 @@ hapi:
     #    fhirpath_interceptor_enabled: false
     filter_search_enabled: true
     graphql_enabled: true
-    narrative_enabled: false
+    narrative_enabled: true
     mdm_enabled: false
     mdm_rules_json_location: "mdm-rules.json"
     local_base_urls:
-      - https://twcore.hapi.fhir.tw/fhir
+      - https://hapifhir.802.org.tw/fhir
     logical_urls:
       - http://terminology.hl7.org/*
       - https://terminology.hl7.org/*
@@ -264,13 +265,13 @@ hapi:
     reuse_cached_search_results_millis: -1
     tester:
       home:
-        name: 臺灣公開測試伺服器（TW Core 臺灣核心規範）
-        server_address: 'https://twcore.hapi.fhir.tw/fhir'
+        name: 國軍高雄總醫院測試伺服器（TW Core 臺灣核心規範）
+        server_address: 'https://hapifhir.802.org.tw/fhir'
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
       plain:
-        name: 臺灣公開測試伺服器（一般）
-        server_address: 'https://hapi.fhir.tw/fhir'
+        name: 臺灣公開測試伺服器
+        server_address: 'https://twcore.hapi.fhir.tw/fhir'
         refuse_to_fetch_third_party_urls: false
         fhir_version: R4
       global:
